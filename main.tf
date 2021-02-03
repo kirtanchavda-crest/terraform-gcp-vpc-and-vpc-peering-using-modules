@@ -1,7 +1,7 @@
 module "mirrored-vpc" {
   source      = "./modules/terraform-gcp-vpc"
   credentials = "credentials.json"
-  gcp_project = "calcium-vial-280707"
+  gcp_project = "<project-id>"
   region      = "us-central1"
   name        = "mirrored"
   ip_ranges = {
@@ -14,7 +14,7 @@ module "mirrored-vpc" {
 module "collector-vpc" {
   source      = "./modules/terraform-gcp-vpc"
   credentials = "credentials.json"
-  gcp_project = "calcium-vial-280707"
+  gcp_project = "<project-id>"
   region      = "us-central1"
   name        = "collector"
   ip_ranges = {
@@ -28,10 +28,10 @@ module "collector-vpc" {
 module "vpc_peering" {
   source        = "./modules/terraform-gcp-vpc-peering"
   credentials   = "credentials.json"
-  gcp_project   = "calcium-vial-280707"
+  gcp_project   = "<project-id>"
   region        = "us-central1"
   prefix        = "peering"
-  local_network = "projects/calcium-vial-280707/global/networks/mirrored-vpc"
-  peer_network  = "projects/calcium-vial-280707/global/networks/collector-vpc"
+  local_network = "projects/<project-id>/global/networks/mirrored-vpc"
+  peer_network  = "projects/<project-id>/global/networks/collector-vpc"
 
 }
